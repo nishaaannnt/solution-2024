@@ -34,8 +34,9 @@ class _QPageState extends State<QPage> {
       body: ListView(
         children: [
           Container(
-            margin: const EdgeInsets.all(10),
-            padding: const EdgeInsets.all(10),
+            color: Colors.white,
+            margin: const EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             child: ListView.builder(
               physics:
                   const NeverScrollableScrollPhysics(), // Disable scrolling for the inner ListView
@@ -46,7 +47,7 @@ class _QPageState extends State<QPage> {
               itemBuilder: (context, index) {
                 return Container(
                   margin: const EdgeInsets.all(10),
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(20),
                   child: Card(
                     elevation: 4,
                     shape: RoundedRectangleBorder(
@@ -56,7 +57,7 @@ class _QPageState extends State<QPage> {
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(16.0),
+                        borderRadius: BorderRadius.circular(10.0),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.3),
@@ -74,11 +75,11 @@ class _QPageState extends State<QPage> {
                             style: const TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
-                              fontSize: 16,
+                              fontSize: 18,
                             ),
                             textAlign: TextAlign.center,
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 25),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
@@ -107,6 +108,10 @@ class _QPageState extends State<QPage> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: yesColor[index],
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(11)
+                                  ),
+                                   padding: const EdgeInsets.only(left:40,right: 40,top: 15,bottom: 15)
                                 ),
                                 child: const Text(
                                   'Yes',
@@ -114,6 +119,7 @@ class _QPageState extends State<QPage> {
                                 ),
                               ),
                               ElevatedButton(
+
                                 onPressed: () {
                                   setState(() {
                                     answers[index] = 0;
@@ -139,10 +145,17 @@ class _QPageState extends State<QPage> {
                                 },
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: noColor[index],
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(11)
+                                  ),
+                                  padding: const EdgeInsets.only(left:40,right: 40,top: 15,bottom: 15)
                                 ),
                                 child: const Text(
                                   'No',
-                                  style: TextStyle(color: Colors.white),
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16
+                                    ),
                                 ),
                               ),
                             ],

@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
       appBar: appBar(),
       body: ListView(
         children: [
-          searchField(),
+          profile(),
           const SizedBox(height: 40),
           categories(),
           const SizedBox(height: 40),
@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage> {
         style: TextStyle(
             color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.purple.shade100,
       elevation: 0,
       centerTitle: true,
       // Leading - Left
@@ -131,69 +131,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Container searchField() {
+  Container profile() {
     return Container(
-      margin: const EdgeInsets.only(top: 40, left: 20, right: 20),
-      decoration: BoxDecoration(boxShadow: [
-        BoxShadow(
-            color: Color(0xff1D1617).withOpacity(0.11),
-            blurRadius: 40,
-            spreadRadius: 0)
-      ]),
-      child: TextField(
-        decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            hintText: 'Search Pancake',
-            hintStyle: TextStyle(
-              color: const Color.fromARGB(255, 188, 184, 184),
-              fontSize: 15,
-            ),
-            contentPadding: EdgeInsets.all(15),
-            prefixIcon: Container(
-              color: Colors.white,
-              padding: EdgeInsets.only(left: 5, right: 5, top: 15, bottom: 15),
-              height: 60,
-              width: 70,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: Colors.white,
-                      elevation: 0),
-                  onPressed: () {
-                    print('hello');
-                  },
-                  child: SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: SvgPicture.asset(
-                      'assets/icons/Search.svg',
-                    ),
-                  )),
-            ),
-            suffixIcon: SizedBox(
-              width: 100,
-              child: IntrinsicHeight(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    VerticalDivider(
-                      color: Colors.black,
-                      indent: 10,
-                      endIndent: 10,
-                      thickness: 0.1,
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: SvgPicture.asset('assets/icons/Filter.svg')),
-                  ],
-                ),
-              ),
-            ),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(15)),
-                borderSide: BorderSide.none)),
-      ),
+      color: Colors.purple.shade100,
+      
+      height: 100,
     );
   }
 
