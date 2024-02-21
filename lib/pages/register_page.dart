@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:solution/components/my_button.dart';
 import 'package:solution/components/my_text_field.dart';
+import 'package:solution/services/auth/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
@@ -20,7 +22,22 @@ class _RegisterPageState extends State<RegisterPage> {
 
   // sign up user
 
-  void signUp(){}
+  void signUp()async {
+    final authService = Provider.of<AuthService>(context, listen: false);
+
+    try {
+      await authService.signUpUserWithEmailandPassword(
+          emailController.text, passwordController.text);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            e.toString(),
+          ),
+        ),
+      );
+    }
+  }
 
    @override
   Widget build(BuildContext context) {
