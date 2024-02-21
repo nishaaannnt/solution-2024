@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:solution/components/categories.dart';
+import 'package:solution/components/pop_section.dart';
 import 'package:solution/services/auth/auth_service.dart';
 import 'package:provider/provider.dart';
 import 'package:solution/pages/question.dart' as next;
-// ignore_for_file: prefer_const_constructors
+import 'package:solution/components/profile.dart';
 import 'package:solution/models/category_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:solution/models/diet_model.dart';
 import 'package:solution/models/popular_model.dart';
-
+import 'package:solution/components/diet_section.dart';
+import 'package:solution/components/dash_app_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -43,16 +46,16 @@ class _HomePageState extends State<HomePage> {
      _getInitialInfo();
     
     return Scaffold(
-      appBar: appBar(),
+      appBar: CustomAppBar(),
       body: ListView(
         children: [
-          profile(),
+          Profile(),
           const SizedBox(height: 40),
-          categories(),
+          Categories(list: list),
           const SizedBox(height: 40),
-          _dietSection(),
+          DietSection(diets: diets),
           const SizedBox(height: 40),
-          _popSection()
+          PopSection(popularDiets: popularDiets)
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -68,16 +71,7 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) {
-
-            if(index == 0)
-            {
-               
-            }
-            else if(index == 1)
-            {
-                
-            }
-            else{
+            if(index == 2){
                 Navigator.push(
               context,
               MaterialPageRoute(
@@ -99,9 +93,9 @@ class _HomePageState extends State<HomePage> {
       ]),
       drawer: Drawer(
         child: Container(
-          margin: EdgeInsets.all(20),
-          padding: EdgeInsets.all(20),
-          child: Text(
+          margin: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
+          child: const Text(
             'Drawer',
             style: TextStyle(
               fontSize: 16,
@@ -110,247 +104,6 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-    );
-  }
-  
-  AppBar appBar() {
-    return AppBar(
-      title: const Text(
-        'Dashboard',
-        style: TextStyle(
-            color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
-      ),
-      backgroundColor: Colors.purple.shade100,
-      elevation: 0,
-      centerTitle: true,
-      // Leading - Left
-      actions: [
-        // actions - Right
-       IconButton(onPressed: signOut, icon: const Icon(Icons.logout)),
-      ],
-    );
-  }
-
-  Container profile() {
-    return Container(
-      color: Colors.purple.shade100,
-      
-      height: 100,
-    );
-  }
-
-  Column categories() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(left: 20),
-          child: Text(
-            'Category',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ),
-        SizedBox(height: 20),
-        Container(
-            padding: EdgeInsets.only(right: 10, left: 10),
-            height: 150,
-            child: ListView.builder(
-                itemCount: list.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Container(
-                      width: 115,
-                      margin: EdgeInsets.only(right: 10),
-                      decoration: BoxDecoration(
-                        color: list[index].boxColor.withOpacity(0.75),
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            // circle
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                                color: Colors.white, shape: BoxShape.circle),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: SvgPicture.asset(list[index].iconPath),
-                            ),
-                          ),
-                          Text(
-                            list[index].name,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              color: Colors.black,
-                            ),
-                          )
-                        ],
-                      ));
-                }))
-      ],
-    );
-  }
-
-  Column _dietSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 20),
-          child: Text(
-            'Recommendation\nfor Diet',
-            style: TextStyle(
-                color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
-          ),
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        SizedBox(
-          height: 225,
-          child: ListView.separated(
-            itemBuilder: (context, index) {
-              return Container(
-                width: 210,
-                decoration: BoxDecoration(
-                    color: diets[index].boxColor.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(20)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    SvgPicture.asset(diets[index].iconPath),
-                    Column(
-                      children: [
-                        Text(
-                          diets[index].name,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black,
-                              fontSize: 16),
-                        ),
-                        Text(
-                          '${diets[index].level} | ${diets[index].duration} | ${diets[index].calorie}',
-                          style: const TextStyle(
-                              color: Color(0xff7B6F72),
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      height: 45,
-                      width: 130,
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [
-                            diets[index].viewIsSelected
-                                ? const Color(0xff9DCEFF)
-                                : Colors.transparent,
-                            diets[index].viewIsSelected
-                                ? const Color(0xff92A3FD)
-                                : Colors.transparent
-                          ]),
-                          borderRadius: BorderRadius.circular(50)),
-                      child: Center(
-                        child: Text(
-                          'View',
-                          style: TextStyle(
-                              color: diets[index].viewIsSelected
-                                  ? Colors.white
-                                  : const Color(0xffC58BF2),
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              );
-            },
-            separatorBuilder: (context, index) => const SizedBox(width: 25),
-            itemCount: diets.length,
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.only(left: 20, right: 20),
-          ),
-        )
-      ],
-    );
-  }
-
-  Column _popSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            margin: EdgeInsets.only(left: 10),
-            child: Text(
-              'Popular',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-          ),
-        ),
-        SizedBox(height: 20),
-        ListView.separated(
-          itemBuilder: (context, index) {
-            return Container(
-              padding: EdgeInsets.all(1),
-              margin: EdgeInsets.only(left: 5, right: 5, bottom: 5),
-              height: 115,
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.black.withOpacity(0.4),
-                        offset: Offset(0, 10),
-                        blurRadius: 40,
-                        spreadRadius: 0)
-                  ]),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SvgPicture.asset(
-                    popularDiets[index].iconPath,
-                    width: 65,
-                    height: 65,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(
-                        popularDiets[index].name,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 16),
-                      ),
-                      Text(
-                        '${popularDiets[index].level}|${popularDiets[index].calorie}',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 16),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            );
-          },
-          separatorBuilder: (context, index) => SizedBox(height: 25),
-          itemCount: popularDiets.length,
-          shrinkWrap: true,
-          padding: EdgeInsets.only(left: 20, right: 20),
-        ),
-      ],
     );
   }
 }
