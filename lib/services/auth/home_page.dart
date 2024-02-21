@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
      _getInitialInfo();
     
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       body: ListView(
         children: [
           Profile(),
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => next.QPage()
+                builder: (context) => const next.QPage()
                 )
               );
           }),
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => next.QPage()
+                builder: (context) => const next.QPage()
                 )
               );
             }

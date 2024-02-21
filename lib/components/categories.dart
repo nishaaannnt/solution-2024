@@ -6,7 +6,7 @@ class Categories extends StatelessWidget {
 
   final List<CategoryModel> list;
 
-  const Categories({Key? key, required this.list}) : super(key: key);
+  const Categories({super.key, required this.list});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class Categories extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.only(left: 20),
           child: Text(
             'Category',
@@ -25,9 +25,9 @@ class Categories extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Container(
-            padding: EdgeInsets.only(right: 10, left: 10),
+            padding: const EdgeInsets.only(right: 10, left: 10),
             height: 150,
             child: ListView.builder(
                 itemCount: list.length,
@@ -35,10 +35,10 @@ class Categories extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Container(
                       width: 115,
-                      margin: EdgeInsets.only(right: 10),
+                      margin: const EdgeInsets.only(right: 10),
                       decoration: BoxDecoration(
                         color: list[index].boxColor.withOpacity(0.75),
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderRadius: const BorderRadius.all(Radius.circular(10)),
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -47,7 +47,7 @@ class Categories extends StatelessWidget {
                             // circle
                             width: 50,
                             height: 50,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Colors.white, shape: BoxShape.circle),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -56,7 +56,7 @@ class Categories extends StatelessWidget {
                           ),
                           Text(
                             list[index].name,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 16,
                               color: Colors.black,

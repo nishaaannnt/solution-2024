@@ -7,7 +7,7 @@ import 'package:solution/models/popular_model.dart';
 class PopSection extends StatelessWidget {
   final List<PopularDietsModel> popularDiets;
 
-  const PopSection({Key? key, required this.popularDiets}) : super(key: key);
+  const PopSection({super.key, required this.popularDiets});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +30,7 @@ class PopSection extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         ListView.separated(
+          physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             return Container(
               padding: const EdgeInsets.all(1),
