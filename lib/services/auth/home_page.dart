@@ -50,11 +50,11 @@ class _HomePageState extends State<HomePage> {
       body: ListView(
         children: [
           Profile(),
-          const SizedBox(height: 40),
+          const SizedBox(height: 30),
           Categories(list: list),
-          const SizedBox(height: 40),
+          const SizedBox(height: 30),
           DietSection(diets: diets),
-          const SizedBox(height: 40),
+          const SizedBox(height: 30),
           PopSection(popularDiets: popularDiets)
         ],
       ),
