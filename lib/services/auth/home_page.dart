@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:solution/pages/chat_list.dart';
 import 'package:solution/pages/chat_page.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:solution/components/categories.dart';
@@ -80,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const next.QPage()
+                builder: (context) => const ChatList()
                 )
               );
             }
