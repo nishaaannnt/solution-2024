@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:sign_in_button/sign_in_button.dart';
 import 'package:solution/components/my_button.dart';
 import 'package:solution/components/my_text_field.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:sign_in_button/sign_in_button.dart';
 import 'package:solution/services/auth/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
-  const LoginPage({super.key, required this.onTap});
+
+  const LoginPage({Key? key, required this.onTap}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -52,27 +53,29 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xfffbe4ff),
       appBar: AppBar(
-        title: const Text("Sign In"),
+        leading: const Icon(Icons.arrow_back_ios_new),
+        backgroundColor: const Color(0xfffbe4ff),
       ),
       body: SafeArea(
-        child: Center(
-          child: Padding(
+        child: SingleChildScrollView(
+          child: Center(
+            child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // logo
-                  const Icon(
-                    Icons.child_care,
-                    size: 80,
-                  ),
-
+                  Image.asset('assets/icons/autismlogo.png'),
                   const SizedBox(height: 20),
                   // welcome back message
-                  const Text(
-                    'Welcome Back',
-                    style: TextStyle(fontSize: 20),
+                  Text(
+                    'Welcome back',
+                    style: GoogleFonts.getFont(
+                      'Poppins',
+                      textStyle: const TextStyle(
+                          fontSize: 32, fontWeight: FontWeight.w600),
+                    ),
                   ),
 
                   const SizedBox(height: 20),
@@ -96,7 +99,10 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text('Not a member?'),
+                      const Text(
+                        'Not a member?',
+                        style: TextStyle(fontSize: 16),
+                      ),
                       const SizedBox(width: 4),
                       GestureDetector(
                         onTap: widget.onTap,
@@ -104,15 +110,18 @@ class _LoginPageState extends State<LoginPage> {
                           'Register Now',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
+                            fontSize: 15.5,
                           ),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   _googleSignInButton(),
                 ],
-              )),
+              ),
+            ),
+          ),
         ),
       ),
     );
@@ -122,6 +131,7 @@ class _LoginPageState extends State<LoginPage> {
     return Center(
       child: SizedBox(
         height: 50,
+        width: double.infinity,
         child: SignInButton(
           Buttons.google,
           text: "Sign in with Google",
@@ -130,7 +140,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
 
   void _handleGoogleSignIn() {
     try {
