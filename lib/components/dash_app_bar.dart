@@ -1,11 +1,9 @@
-// custom_app_bar.dart
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:solution/services/auth/auth_service.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({Key? key}) : super(key: key);
+  const CustomAppBar({super.key});
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
