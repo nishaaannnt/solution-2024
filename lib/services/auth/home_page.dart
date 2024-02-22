@@ -15,6 +15,7 @@ import 'package:solution/models/diet_model.dart';
 import 'package:solution/models/popular_model.dart';
 import 'package:solution/components/diet_section.dart';
 import 'package:solution/components/dash_app_bar.dart';
+import 'package:solution/pages/job_page.dart' as job;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -24,7 +25,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   int currentIndex = 0;
   List<CategoryModel> list = [];
   List<DietModel> diets = [];
@@ -38,18 +38,18 @@ class _HomePageState extends State<HomePage> {
     diets = DietModel.getDiets();
     popularDiets = PopularDietsModel.getPopularDiets();
   }
-    void signOut() {
+
+  void signOut() {
     final authService = Provider.of<AuthService>(context, listen: false);
     authService.signOut();
   }
 
-    final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
+    _getInitialInfo();
 
-     _getInitialInfo();
-    
     return Scaffold(
       appBar: const CustomAppBar(),
       body: ListView(
@@ -66,36 +66,28 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
           child: SvgPicture.asset('assets/icons/button.svg'),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const next.QPage()
-                )
-              );
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const next.QPage()));
           }),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) {
-            if(index == 2){
-                Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const next.QPage()
-                )
-              );
+          currentIndex: currentIndex,
+          onTap: (index) {
+            if (index == 2) {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const next.QPage()));
             }
-        },
-         items: [
-        BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home'),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.group),
-            label: 'Center'),
-        BottomNavigationBarItem(
-             icon: Icon(Icons.message),
-            label: 'Right'),
-      ]),
+            if (index == 2) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const job.JobPage(),),);
+            }
+          },
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.group), label: 'Question'),
+            BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Jobs'),
+          ]),
       drawer: Drawer(
         child: Container(
           margin: const EdgeInsets.all(20),
