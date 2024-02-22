@@ -45,7 +45,7 @@ class ChatService extends ChangeNotifier {
 
       String chatRoomId = ids.join("_");
 
-      return _firestore.collection('chat_rooms').doc(chatRoomId).collection('messages').orderBy('timestamp').orderBy('timestamp',descending: false).snapshots();
+      return _firestore.collection('chat_rooms').doc(chatRoomId).collection('messages').orderBy('timestamp',descending: false).snapshots();
 
    }
 }

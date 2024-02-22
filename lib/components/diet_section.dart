@@ -6,7 +6,7 @@ import 'package:solution/models/diet_model.dart';
 class DietSection extends StatelessWidget {
   final List<DietModel> diets;
 
-  const DietSection({Key? key, required this.diets}) : super(key: key);
+  const DietSection({super.key, required this.diets});
 
   @override
   Widget build(BuildContext context) {
