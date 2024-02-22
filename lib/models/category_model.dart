@@ -1,13 +1,9 @@
-import 'package:flutter/material.dart';
-
 class CategoryModel 
 {
   String name;
   String iconPath;
-  Color boxColor;
 
   CategoryModel({
-    required this.boxColor,
     required this.iconPath,
     required this.name,
   });
@@ -17,10 +13,10 @@ class CategoryModel
     List<CategoryModel> categories = [];
 
     categories.addAll([
-      CategoryModel(boxColor: Color.fromARGB(255, 38, 176, 251), iconPath: 'assets/icons/plate.svg', name: 'Salad'),
-      CategoryModel(boxColor: Color.fromARGB(255, 170, 255, 0), iconPath: 'assets/icons/honey-pancakes.svg', name: 'Cake'),
-      CategoryModel(boxColor: Color.fromARGB(255, 15, 183, 0), iconPath: 'assets/icons/pie.svg', name: 'Pie'),
-      CategoryModel(boxColor: Color.fromARGB(255, 197, 0, 184), iconPath: 'assets/icons/orange-snacks.svg', name: 'Smoothies'),
+      CategoryModel(iconPath: 'assets/icons/connect.png', name: 'Take a Test'),
+      CategoryModel(iconPath: 'assets/icons/call.png', name: 'Contact an Expert'),
+      CategoryModel(iconPath: 'assets/icons/community.png', name: 'Join the Community'),
+      CategoryModel(iconPath: 'assets/icons/school.png', name: 'Special Schools'),
     ]);
 
     return categories;
