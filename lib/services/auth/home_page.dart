@@ -73,21 +73,27 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: currentIndex,
           onTap: (index) {
+            // if (index == 1) {
+            //   Navigator.push(context,
+            //       MaterialPageRoute(builder: (context) => const next.QPage()));
+            // }
             if (index == 1) {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const next.QPage()));
-            }
-            if (index == 2) {
               Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const job.JobPage(),),);
             }
+            if (index == 2) {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>const ChatList()),);
+            }
           },
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.group), label: 'Question'),
-            BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Jobs'),
+            BottomNavigationBarItem(icon: Icon(Icons.group), label: 'Jobs'),
+            BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Message'),
           ]),
       drawer: Drawer(
         child: Container(
