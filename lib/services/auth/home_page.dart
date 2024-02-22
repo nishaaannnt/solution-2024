@@ -12,9 +12,9 @@ import 'package:solution/pages/question.dart' as next;
 import 'package:solution/components/profile.dart';
 import 'package:solution/models/category_model.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:solution/models/diet_model.dart';
+import 'package:solution/models/whats_new_model.dart';
 import 'package:solution/models/popular_model.dart';
-import 'package:solution/components/diet_section.dart';
+import 'package:solution/components/whats_new.dart';
 import 'package:solution/components/dash_app_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
 
   int currentIndex = 0;
   List<CategoryModel> list = [];
-  List<DietModel> diets = [];
+  List<WhatsNew> info = [];
   List<PopularDietsModel> popularDiets = [];
 
   Color leadingButtonColor = const Color(0xffF7F8F8);
@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
 
   void _getInitialInfo() {
     list = CategoryModel.getCategories();
-    diets = DietModel.getDiets();
+    info = WhatsNew.getInfo();
     popularDiets = PopularDietsModel.getPopularDiets();
   }
     void signOut() {
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 30),
           Categories(list: list),
           const SizedBox(height: 30),
-          DietSection(diets: diets),
+          WhatIsNew(info: info),
           const SizedBox(height: 30),
           PopSection(popularDiets: popularDiets)
         ],
