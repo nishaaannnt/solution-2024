@@ -24,14 +24,14 @@ class WhatsNew {
     for (var article in responses) {
       info.add(
         WhatsNew(
-          content: article.title,
+          content: "${article.title.substring(0,25)}...",
           iconPath: article.urlToImage,
           url: article.url,
         ),
       );
     }
-
-    return info;
+    info.shuffle();
+   return info.take(5).toList();
   }
 }
 

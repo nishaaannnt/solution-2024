@@ -5,7 +5,7 @@ import 'package:solution/pages/chat_list.dart';
 import 'package:solution/pages/chat_page.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:solution/components/categories.dart';
-import 'package:solution/components/pop_section.dart';
+import 'package:solution/components/articles_section.dart';
 import 'package:solution/services/auth/auth_service.dart';
 import 'package:provider/provider.dart';
 import 'package:solution/pages/question.dart' as next;
@@ -28,17 +28,20 @@ class _HomePageState extends State<HomePage> {
 
   int currentIndex = 0;
   List<CategoryModel> list = [];
+
   late Future<List<WhatsNew>> info;
-  List<PopularDietsModel> popularDiets = [];
+
+  List<WhatsNew> popularDiets = [];
 
   Color leadingButtonColor = const Color(0xffF7F8F8);
   int clickCount = 0;
 
-  Future<void> _getInitialInfo() async {
-    list = CategoryModel.getCategories();
-    info = WhatsNew.getInfo();
-    popularDiets = PopularDietsModel.getPopularDiets();
-  }
+ Future<void> _getInitialInfo() async {
+  list = CategoryModel.getCategories();
+  info = WhatsNew.getInfo();
+  popularDiets = await info; // Wait for the Future to complete
+}
+
     void signOut() {
     final authService = Provider.of<AuthService>(context, listen: false);
     authService.signOut();
@@ -61,7 +64,7 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(height: 30),
           WhatIsNew(infoFuture: info),
           const SizedBox(height: 30),
-          PopSection(popularDiets: popularDiets)
+          ArticlesSection(infoFuture: info)
         ],
       ),
       floatingActionButton: FloatingActionButton(
