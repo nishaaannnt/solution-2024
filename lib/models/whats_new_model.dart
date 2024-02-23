@@ -22,9 +22,21 @@ class WhatsNew {
     List<WhatsNew> info = [];
 
     for (var article in responses) {
+
+      var cont;
+
+      if(article.title.length > 25)
+      {
+        cont = article.title.substring(0,25);
+      }
+      else
+      {
+        cont = article.title;
+      }
+      
       info.add(
         WhatsNew(
-          content: "${article.title.substring(0,25)}...",
+          content: "$cont...",
           iconPath: article.urlToImage,
           url: article.url,
         ),
