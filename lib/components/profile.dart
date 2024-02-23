@@ -25,10 +25,14 @@ class _ProfileState extends State<Profile> {
   void didUpdateWidget(Profile oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.displayName != widget.displayName) {
-      setState(() {
-        name = widget.displayName;
-      });
+      _updateDisplayName();
     }
+  }
+
+  _updateDisplayName() {
+    setState(() {
+      name = widget.displayName;
+    });
   }
 
   @override
