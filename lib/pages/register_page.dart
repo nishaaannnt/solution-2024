@@ -7,37 +7,33 @@ import 'package:solution/services/auth/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
-  const RegisterPage({super.key, required this.onTap});
+  const RegisterPage({Key? key, required this.onTap});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  // text controllers
-
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  // sign up user
-
-  void signUp()async {
-    final authService = Provider.of<AuthService>(context, listen: false);
-
-    try {
-      await authService.signUpUserWithEmailandPassword(
-          emailController.text, passwordController.text);
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            e.toString(),
-          ),
+  void signUp() async {
+  final authService = Provider.of<AuthService>(context, listen: false);
+  try {
+    await authService.signUpUserWithEmailandPassword(
+        emailController.text, passwordController.text, nameController.text);
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          e.toString(),
         ),
-      );
-    }
+      ),
+    );
   }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +60,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
 
                 const SizedBox(height: 20),
+                // Name field
+                MyTextField(
+                    controller: nameController,
+                    hintText: 'Enter your Name',
+                    obscuretext: false),
+                const SizedBox(height: 10),
                 // email field
                 MyTextField(
                     controller: emailController,

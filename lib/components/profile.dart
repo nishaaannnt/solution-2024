@@ -1,19 +1,18 @@
-// profile.dart
+// File: profile.dart
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Profile extends StatefulWidget {
-
   final String displayName;
-  const Profile({super.key, required this.displayName});
+
+  const Profile({Key? key, required this.displayName}) : super(key: key);
 
   @override
   State<Profile> createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
-
   late String name;
 
   @override
@@ -23,36 +22,39 @@ class _ProfileState extends State<Profile> {
   }
 
   @override
+  void didUpdateWidget(Profile oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.displayName != widget.displayName) {
+      setState(() {
+        name = widget.displayName;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: 200,
       decoration: BoxDecoration(
         color: Colors.purple.shade100,
         borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(30), 
-          bottomRight: Radius.circular(30)
-          )
+            bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
       ),
       child: Column(
         children: [
-          Container(                      // Expanded() to occupy full space
+          Container(
             decoration: const BoxDecoration(
-              color: Colors.white,
-              shape: BoxShape.circle
-            ),
+                color: Colors.white, shape: BoxShape.circle),
             child: SvgPicture.asset(
               'assets/icons/boy.svg',
               height: 85,
               width: 85,
-              ),
+            ),
           ),
           const SizedBox(height: 20),
           Text(
             name,
-            style: const TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.w700
-            ),
+            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
           )
         ],
       ),

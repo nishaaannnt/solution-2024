@@ -3,31 +3,27 @@ import 'package:solution/pages/login_page.dart';
 import 'package:solution/pages/register_page.dart';
 
 class LoginOrRegister extends StatefulWidget {
-  const LoginOrRegister({super.key});
+  const LoginOrRegister({Key? key}) : super(key: key);
 
   @override
   State<LoginOrRegister> createState() => _LoginOrRegisterState();
 }
 
 class _LoginOrRegisterState extends State<LoginOrRegister> {
+  bool showLoginPage = true;
 
-  // Initially show login Page
-  bool showLoginPage=true;
-
-  // function to switch between pages
-  void togglePages(){
+  void togglePages() {
     setState(() {
-      showLoginPage=!showLoginPage;
+      showLoginPage = !showLoginPage;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if(showLoginPage){
+    if (showLoginPage) {
       return LoginPage(onTap: togglePages);
-    }else{
+    } else {
       return RegisterPage(onTap: togglePages);
-
     }
   }
 }
