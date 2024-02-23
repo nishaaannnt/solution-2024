@@ -111,11 +111,11 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.group),
-            label: 'Center',
+            label: 'Community',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.message),
-            label: 'Right',
+            label: 'Messages',
           ),
         ],
       ),

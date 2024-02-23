@@ -61,10 +61,13 @@ class ArticlesSection extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Image.network(
-                          info[index].iconPath ?? "placeholder_image_path",
-                          width: 65,
-                          height: 65,
+                         ClipRRect(
+                          borderRadius: BorderRadius.circular(20.0), // Adjust border radius here
+                          child: Image.network(
+                            info[index].iconPath ?? "placeholder_image_path",
+                            width: 70,
+                            height: 70,
+                          ),
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -73,7 +76,7 @@ class ArticlesSection extends StatelessWidget {
                               info[index].content ?? "No content available",
                               style: const TextStyle(
                                 fontWeight: FontWeight.w500,
-                                fontSize: 16,
+                                fontSize: 14,
                               ),
                             ),
                           ],
