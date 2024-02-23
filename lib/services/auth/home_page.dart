@@ -28,13 +28,13 @@ class _HomePageState extends State<HomePage> {
 
   int currentIndex = 0;
   List<CategoryModel> list = [];
-  List<WhatsNew> info = [];
+  late Future<List<WhatsNew>> info;
   List<PopularDietsModel> popularDiets = [];
 
   Color leadingButtonColor = const Color(0xffF7F8F8);
   int clickCount = 0;
 
-  void _getInitialInfo() {
+  Future<void> _getInitialInfo() async {
     list = CategoryModel.getCategories();
     info = WhatsNew.getInfo();
     popularDiets = PopularDietsModel.getPopularDiets();
@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
     authService.signOut();
   }
 
-    final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+    String? disName = FirebaseAuth.instance.currentUser?.displayName;
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +55,11 @@ class _HomePageState extends State<HomePage> {
       appBar: const CustomAppBar(),
       body: ListView(
         children: [
-          Profile(),
+          Profile(displayName: disName ?? ""),
           const SizedBox(height: 30),
           Categories(list: list),
           const SizedBox(height: 30),
-          WhatIsNew(info: info),
+          WhatIsNew(infoFuture: info),
           const SizedBox(height: 30),
           PopSection(popularDiets: popularDiets)
         ],
@@ -86,7 +86,7 @@ class _HomePageState extends State<HomePage> {
               );
             }
         },
-         items: [
+         items: const [
         BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home'),

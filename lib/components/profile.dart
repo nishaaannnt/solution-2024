@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({super.key});
+
+  final String displayName;
+  const Profile({super.key, required this.displayName});
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -12,7 +14,13 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
 
-  String name = "Om Bothre";
+  late String name;
+
+  @override
+  void initState() {
+    super.initState();
+    name = widget.displayName;
+  }
 
   @override
   Widget build(BuildContext context) {

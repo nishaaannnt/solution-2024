@@ -13,12 +13,12 @@ class QPage extends StatefulWidget {
 
 class _QPageState extends State<QPage> {
 
-  Color leadingButtonColor = const Color(0xffF7F8F8);
+  Color leadingButtonColor = Colors.purple.shade200;
   List<QWidget> questions = [];
   List<int> answers = List<int>.filled(10, 0);
 
-  List<Color> noColor = List<Color>.filled(10,Colors.blue);
-  List<Color> yesColor = List<Color>.filled(10,Colors.grey);
+  List<Color> noColor = List<Color>.filled(10,Colors.purple.shade200);
+  List<Color> yesColor = List<Color>.filled(10,Colors.grey.shade200);
 
   void getProps() {
     questions = QWidget.getAll();
@@ -60,7 +60,7 @@ class _QPageState extends State<QPage> {
                         borderRadius: BorderRadius.circular(10.0),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.3),
+                            color: Colors.grey.shade50.withOpacity(0.3),
                             spreadRadius: 2,
                             blurRadius: 5,
                             offset: const Offset(0, 3),
@@ -94,15 +94,15 @@ class _QPageState extends State<QPage> {
                                   if(answers[index] == 1)
                                   {
                                     setState(() {
-                                      yesColor[index] = Colors.blue;
-                                    noColor[index] = Colors.grey;
+                                      yesColor[index] = Colors.purple.shade200;
+                                    noColor[index] = Colors.grey.shade200;
                                     });
                                   }
                                   else
                                   {
                                     setState(() {
-                                      yesColor[index] = Colors.grey;
-                                    noColor[index] = Colors.blue;
+                                      yesColor[index] = Colors.grey.shade200;
+                                    noColor[index] = Colors.purple.shade200;
                                     });
                                   }
                                 },
@@ -130,15 +130,15 @@ class _QPageState extends State<QPage> {
                                   if(answers[index] == 1)
                                   {
                                     setState(() {
-                                      yesColor[index] = Colors.blue;
-                                    noColor[index] = Colors.grey;
+                                      yesColor[index] = Colors.purple.shade200;
+                                    noColor[index] = Colors.grey.shade200;
                                     });
                                   }
                                   else
                                   {
                                     setState(() {
-                                      yesColor[index] = Colors.grey;
-                                    noColor[index] = Colors.blue;
+                                      yesColor[index] = Colors.grey.shade200;
+                                    noColor[index] = Colors.purple.shade200;
                                     });
                                   }
                                   
@@ -198,7 +198,7 @@ class _QPageState extends State<QPage> {
         style: TextStyle(
             color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.purple.shade200,
       elevation: 0,
       centerTitle: true,
       // Leading - Left
