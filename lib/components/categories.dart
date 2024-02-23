@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solution/models/category_model.dart';
+import 'package:solution/pages/question.dart' as next;
+import 'package:solution/pages/job_page.dart' as job;
 
 class Categories extends StatelessWidget {
   final List<CategoryModel> list;
@@ -33,9 +35,16 @@ class Categories extends StatelessWidget {
             children: List.generate(list.length, (index) {
                 return Container(
                   padding: const EdgeInsets.all(10),
-                  child: Card(
-                    elevation: 4,
-                    surfaceTintColor: Colors.white,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 4,
+                      foregroundColor: Colors.black,
+                      surfaceTintColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)
+                      )
+                    ),
+                    onPressed: () => categoriesFun(context, index),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -64,5 +73,26 @@ class Categories extends StatelessWidget {
         ),
       ],
     );
+  }
+  
+  categoriesFun(context, int index) {
+    if(index == 0)
+    {
+      Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const next.QPage(),
+              ),
+            );
+    }
+    if(index == 5)
+    {
+      Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const job.JobPage(),
+              ),
+            );
+    }
   }
 }
