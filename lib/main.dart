@@ -5,8 +5,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:solution/services/auth/auth_service.dart';
 import 'package:provider/provider.dart';
 
-// import 'package:solution/pages/login_page.dart';
-// import 'package:solution/services/auth/login_or_register.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

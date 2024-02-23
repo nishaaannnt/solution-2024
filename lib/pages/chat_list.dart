@@ -30,10 +30,10 @@ class _ChatListState extends State<ChatList> {
       stream: FirebaseFirestore.instance.collection('users').snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Text('Error');
+          return const Text('Error');
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator(); // Display a loading indicator
+          return const CircularProgressIndicator(); // Display a loading indicator
         }
 
         return ListView(
@@ -55,7 +55,7 @@ class _ChatListState extends State<ChatList> {
           decoration: BoxDecoration(
               color: Colors.grey.shade200,
               borderRadius: BorderRadius.circular(10)),
-          padding: EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(10.0),
           child:Row(children: [
             SvgPicture.asset(
               'assets/icons/boy.svg',
@@ -64,7 +64,7 @@ class _ChatListState extends State<ChatList> {
             ),
             const SizedBox(width: 10),
             Text(
-              data['email'],
+              data['displayName'],
               style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
@@ -78,7 +78,7 @@ class _ChatListState extends State<ChatList> {
             context,
             MaterialPageRoute(
               builder: (context) => ChatPage(
-                receiverUserEmail: data['email'],
+                receiverUserName: data['displayName'],
                 receiverUserId: data['uid'],
               ),
             ),

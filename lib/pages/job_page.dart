@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:solution/components/search_box.dart';
-import 'package:solution/components/job_card.dart' as jobcard;
+import 'package:solution/components/job_card.dart';
+import 'package:solution/models/job_model.dart';
 
 class JobPage extends StatefulWidget {
   const JobPage({super.key});
@@ -11,6 +12,18 @@ class JobPage extends StatefulWidget {
 }
 
 class _JobPageState extends State<JobPage> {
+  List<JobModel> jobs = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _getInfo();
+  }
+
+  void _getInfo() {
+    jobs = JobModel.getJobs();
+  }
+
   final searchController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -43,19 +56,9 @@ class _JobPageState extends State<JobPage> {
                         obscuretext: false),
                   ),
                   const SizedBox(
-                    height: 70,
+                    height: 30,
                   ),
-                  Center(
-                    child: jobcard.JobCard(
-                      imagePath: 'assets/icons/community.png',
-                      title: 'Office Clerk',
-                      description:
-                          'AB Solutions, Mumbai',
-                      onApplyNowPressed: () {
-                        // Handle 'Apply Now' button press
-                      },
-                    ),
-                  )
+                  Center(child: JobCard(jobs: jobs))
                 ],
               ),
             ),
