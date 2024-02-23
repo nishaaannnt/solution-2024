@@ -10,9 +10,9 @@ class JobCard extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: screenHeight *  0.5,
+      height: screenHeight * 0.685,
       child: ListView.separated(
-          physics: const NeverScrollableScrollPhysics(),
+          //physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             return Container(
               width: double.infinity,

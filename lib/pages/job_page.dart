@@ -30,7 +30,6 @@ class _JobPageState extends State<JobPage> {
     return Scaffold(
         appBar: AppBar(),
         body: SafeArea(
-          child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -56,13 +55,13 @@ class _JobPageState extends State<JobPage> {
                         obscuretext: false),
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   Center(child: JobCard(jobs: jobs))
                 ],
               ),
             ),
           ),
-        ));
+        );
   }
 }
