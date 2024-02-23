@@ -56,9 +56,9 @@ class _ProfileState extends State<Profile> {
             ),
           ),
           const SizedBox(height: 20),
-          Text(
-            name,
-            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+          const Text(
+            'Hello, Om',
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
           )
         ],
       ),

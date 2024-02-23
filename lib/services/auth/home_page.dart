@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
         future: info,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else {
@@ -78,23 +78,9 @@ class _HomePageState extends State<HomePage> {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        child: SvgPicture.asset('assets/icons/button.svg'),
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const next.QPage()));
-        },
-      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (index) {
-          if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const job.JobPage(),
-              ),
-            );
-          }
           if (index == 2) {
             Navigator.push(
               context,
