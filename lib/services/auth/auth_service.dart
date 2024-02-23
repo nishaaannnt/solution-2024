@@ -5,19 +5,23 @@ import 'package:flutter/material.dart';
 class AuthService extends ChangeNotifier {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  final FirebaseFirestore _firestore=FirebaseFirestore.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // Signin User
   Future<UserCredential> signInWithEmailandPassword(
       String email, String password) async {
     try {
+
       UserCredential userCredential = await _firebaseAuth
           .signInWithEmailAndPassword(email: email, password: password);
 
+      if (userCredential.user?.uid == null) {
+        throw Exception("User does not exist");
+      }
       _firestore.collection('users').doc(userCredential.user!.uid).set({
-        'uid':userCredential.user!.uid,
-        'email':email
-      },SetOptions(merge: true));
+        'uid': userCredential.user!.uid,
+        'email': email,
+      }, SetOptions(merge: true));
       return userCredential;
     } on FirebaseAuthException catch (e) {
       throw Exception((e.code));
@@ -26,22 +30,22 @@ class AuthService extends ChangeNotifier {
 
   // Signup user
 
-  Future<UserCredential> signUpUserWithEmailandPassword(String email, String password) async{
-    try{
-      UserCredential userCredential=await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
-
-      _firestore.collection('users').doc(userCredential.user!.uid).set({
-        'uid':userCredential.user!.uid,
-        'email':email
-      },);
+  Future<UserCredential> signUpUserWithEmailandPassword(
+      String email, String password, String name) async {
+    try {
+      UserCredential userCredential = await _firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      _firestore.collection('users').doc(userCredential.user!.uid).set(
+        {'uid': userCredential.user!.uid, 'email': email, 'displayName': name},
+      );
       return userCredential;
-
-    }on FirebaseAuthException catch(e){
+    } on FirebaseAuthException catch (e) {
       throw Exception((e.code));
     }
   }
+
   // Logout User
-  Future<void> signOut()async {
+  Future<void> signOut() async {
     return await FirebaseAuth.instance.signOut();
   }
 }

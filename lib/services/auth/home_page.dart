@@ -1,8 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:solution/pages/chat_list.dart';
-import 'package:solution/pages/chat_page.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:solution/components/categories.dart';
 import 'package:solution/components/pop_section.dart';
@@ -44,8 +41,6 @@ class _HomePageState extends State<HomePage> {
     authService.signOut();
   }
 
-    final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-
   @override
   Widget build(BuildContext context) {
 
@@ -55,7 +50,7 @@ class _HomePageState extends State<HomePage> {
       appBar: const CustomAppBar(),
       body: ListView(
         children: [
-          Profile(),
+          const Profile(),
           const SizedBox(height: 30),
           Categories(list: list),
           const SizedBox(height: 30),

@@ -5,12 +5,12 @@ import 'package:flutter_svg/svg.dart';
 import 'package:solution/services/chat/chat_service.dart';
 
 class ChatPage extends StatefulWidget {
-  final String receiverUserEmail;
+  final String receiverUserName;
   final String receiverUserId;
 
   const ChatPage(
       {super.key,
-      required this.receiverUserEmail,
+      required this.receiverUserName,
       required this.receiverUserId});
 
   @override
@@ -33,7 +33,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(widget.receiverUserEmail),
+      appBar: appBar(widget.receiverUserName),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
         child: Column(
@@ -145,7 +145,7 @@ class _ChatPageState extends State<ChatPage> {
     );
   }
 
-  AppBar appBar(String userEmail) {
+  AppBar appBar(String userName) {
     return AppBar(
       backgroundColor: Colors.purple.shade100,
       title: Row(
@@ -154,7 +154,7 @@ class _ChatPageState extends State<ChatPage> {
               'assets/icons/boy.svg',
               height: 20,
               width: 20,
-            ), const SizedBox(width: 10.0),Text(userEmail,style: const TextStyle(fontSize: 18),)],
+            ), const SizedBox(width: 10.0),Text(userName,style: const TextStyle(fontSize: 18),)],
         ),
       elevation: 0,
       centerTitle: true,
