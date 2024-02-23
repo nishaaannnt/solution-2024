@@ -24,22 +24,26 @@ class _LoginPageState extends State<LoginPage> {
   User? _user;
 
   void login() async {
-    final authService = Provider.of<AuthService>(context, listen: false);
+  final authService = Provider.of<AuthService>(context, listen: false);
 
-    try {
-      await authService.signInWithEmailandPassword(
-          emailController.text, passwordController.text);
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            e.toString(),
-          ),
+  try {
+    await authService.signInWithEmailAndPassword(
+        emailController.text, passwordController.text);
+
+    // Retrieve and print the display name after a successful login
+    String? displayName = authService.getCurrentUserDisplayName();
+    print("Display Name: $displayName");
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          e.toString(),
         ),
-      );
-    }
+      ),
+    );
   }
-
+}
+  
   @override
   void initState() {
     super.initState();
