@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:solution/components/contact_card.dart';
 import 'package:solution/components/search_box.dart';
-import 'package:solution/components/job_card.dart';
-import 'package:solution/models/job_model.dart';
+import 'package:solution/models/expert_model.dart';
 
-class JobPage extends StatefulWidget {
-  const JobPage({super.key});
+class ContactPage extends StatefulWidget {
+  const ContactPage({super.key});
 
   @override
-  State<JobPage> createState() => _JobPageState();
+  State<ContactPage> createState() => _ContactPageState();
 }
 
-class _JobPageState extends State<JobPage> {
-  List<JobModel> jobs = [];
+class _ContactPageState extends State<ContactPage> {
+  List<ExpertModel> contacts = [];
 
   @override
   void initState() {
@@ -21,7 +21,7 @@ class _JobPageState extends State<JobPage> {
   }
 
   void _getInfo() {
-    jobs = JobModel.getJobs();
+    contacts = ExpertModel.getcontact();
   }
 
   final searchController = TextEditingController();
@@ -32,12 +32,12 @@ class _JobPageState extends State<JobPage> {
         body: SingleChildScrollView(
           child: SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Find a Job',
+                    'Connect an Expert',
                     style: GoogleFonts.getFont(
                       'Poppins',
                       textStyle: const TextStyle(
@@ -52,13 +52,13 @@ class _JobPageState extends State<JobPage> {
                     height: 80,
                     child: SearchBox(
                         controller: searchController,
-                        hintText: 'Seach for Jobs',
+                        hintText: 'Seach for contacts',
                         obscuretext: false),
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Center(child: JobCard(jobs: jobs)),
+                  Center(child: ContactCard(contact: contacts)),
                   const SizedBox(height: 20)
                 ],
               ),

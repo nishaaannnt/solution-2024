@@ -5,18 +5,24 @@ class ArticlesSection extends StatelessWidget {
   final Future<List<WhatsNew>> infoFuture;
 
   const ArticlesSection({Key? key, required this.infoFuture}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+  var placeHolderImage="assets/icons/news4.png";
     return FutureBuilder<List<WhatsNew>>(
       future: infoFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
+          return Center(
+            child: Text('Error: ${snapshot.error}'),
+          );
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return const Text("No data available");
+          return Center(
+            child: Text("No data available"),
+          );
         } else {
           List<WhatsNew> info = snapshot.data!;
 
@@ -24,68 +30,65 @@ class ArticlesSection extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  margin: const EdgeInsets.only(left: 10),
-                  child: const Text(
-                    'Articles',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w700,
-                    ),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: Text(
+                  'Articles',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
-              ListView.separated(
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
+              SizedBox(height: 20), // Adjust spacing between title and articles
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: info.map((article) {
                   return Container(
-                    padding: const EdgeInsets.all(1),
-                    margin: const EdgeInsets.only(left: 5, right: 5, bottom: 5),
-                    height: 115,
-                    width: 110,
+                    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10), // Adjust margins according to your preference
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(16),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.4),
-                          offset: Offset(0, 10),
+                          color: Colors.black.withOpacity(0.3),
+                          offset: Offset(0, 2),
                           blurRadius: 40,
                           spreadRadius: 0,
                         )
                       ],
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Image.network(
-                          info[index].iconPath ?? "placeholder_image_path",
-                          width: 65,
-                          height: 65,
+                        ClipRRect(
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(16),
+                            topRight: Radius.circular(16),
+                          ),
+                          child: article.iconPath == null ? Image.asset(placeHolderImage, fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: 150,) : Image.network(
+                            article.iconPath ?? "",
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: 150, // Adjust height according to your preference
+                          ),
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              info[index].content ?? "No content available",
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 16,
-                              ),
+                        Padding(
+                          padding: const EdgeInsets.all(19.0),
+                          child: Text(
+                            article.content ?? "No content available",
+                            style: const  TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
                             ),
-                          ],
-                        )
+                          ),
+                        ),
                       ],
                     ),
                   );
-                },
-                separatorBuilder: (context, index) => SizedBox(height: 25),
-                itemCount: info.length,
-                shrinkWrap: true,
-                padding: const EdgeInsets.only(left: 20, right: 20),
+                }).toList(),
               ),
             ],
           );
@@ -94,4 +97,3 @@ class ArticlesSection extends StatelessWidget {
     );
   }
 }
-
