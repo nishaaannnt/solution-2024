@@ -10,9 +10,9 @@ class JobCard extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: screenHeight * 0.685,
+      height: screenHeight * 1,
       child: ListView.separated(
-          //physics: const NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             return Container(
               width: double.infinity,
@@ -65,7 +65,7 @@ class JobCard extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             jobs[index].title,
-                            style: TextStyle(
+                            style:const TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16.0,
                             ),
@@ -75,14 +75,14 @@ class JobCard extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
                             jobs[index].description,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 14.0,
                             ),
                           ),
                         ),
                         // Apply Now Button
                         Padding(
-                          padding: const EdgeInsets.all(18),
+                          padding: const EdgeInsets.all(8),
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
@@ -99,7 +99,7 @@ class JobCard extends StatelessWidget {
               ),
             );
           },
-          separatorBuilder: (context, index) => SizedBox(height: 25),
+          separatorBuilder: (context, index) => const SizedBox(height: 25),
           itemCount: jobs.length,
           shrinkWrap: true,
           padding: const EdgeInsets.symmetric(horizontal: 20),

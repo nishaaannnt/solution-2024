@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:solution/models/category_model.dart';
 import 'package:solution/pages/question.dart' as next;
 import 'package:solution/pages/job_page.dart' as job;
+import 'package:solution/pages/contact_page.dart' as contact;
 
 class Categories extends StatelessWidget {
   final List<CategoryModel> list;
@@ -82,6 +83,15 @@ class Categories extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => const next.QPage(),
+              ),
+            );
+    }
+    if(index == 1)
+    {
+      Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const contact.ContactPage(),
               ),
             );
     }
