@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Report extends StatefulWidget {
-  const Report({super.key});
+  
+  final List<int> answers;
+  const Report({super.key, required this.answers});
 
   @override
   State<Report> createState() => _ReportState();
