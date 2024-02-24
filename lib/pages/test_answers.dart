@@ -4,8 +4,8 @@ import 'package:solution/pages/report.dart' as next;
 class Page extends StatelessWidget {
 
   const Page({
-    Key? key, required this.answers
-    }) : super(key: key);
+    super.key, required this.answers
+    });
 
   final List<int> answers;
 
@@ -33,7 +33,7 @@ class Page extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => next.Report()
+                builder: (context) => next.Report(answers: answers)
                 )
               );
           }),

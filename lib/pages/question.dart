@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:solution/models/qwidget.dart';
-import 'package:solution/pages/test_answers.dart' as next;
+import 'package:solution/pages/report.dart' as next;
 
 class QPage extends StatefulWidget {
   const QPage({super.key});
@@ -37,8 +36,6 @@ class _QPageState extends State<QPage> {
         children: [
           Container(
             color: Colors.white,
-            margin: const EdgeInsets.all(0),
-            padding: const EdgeInsets.all(0),
             child: ListView.builder(
               physics:
                   const NeverScrollableScrollPhysics(), // Disable scrolling for the inner ListView
@@ -128,52 +125,64 @@ class _QPageState extends State<QPage> {
                                             style:
                                                 TextStyle(color: Colors.white),
                                           ),
-                                          answers[index] == 1  ? const Icon(Icons.check) : const Text("") 
+                                          const SizedBox(width: 10),
+                                          answers[index] == 1
+                                              ? const SizedBox(
+                                                  width: 10,
+                                                  child: Icon(Icons.check,
+                                                      color: Colors.white))
+                                              : const Text("")
                                         ],
                                       )
                                     ],
                                   )),
                               ElevatedButton(
-                                onPressed: () {
-                                  setState(() {
-                                    answers[index] = 0;
+                                  onPressed: () {
+                                    setState(() {
+                                      answers[index] = 0;
 
-                                    questions[index].isNo = true;
-                                    questions[index].isYes = false;
-                                  });
-                                  if (answers[index] == 1) {
-                                    setState(() {
-                                      yesColor[index] = Colors.purple.shade300;
-                                      noColor[index] = Colors.grey.shade400;
+                                      questions[index].isNo = true;
+                                      questions[index].isYes = false;
                                     });
-                                  } else {
-                                    setState(() {
-                                      yesColor[index] = Colors.purple.shade300;
-                                      noColor[index] = Colors.green.shade400;
-                                    });
-                                  }
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: noColor[index],
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(11)),
-                                    padding: const EdgeInsets.only(
-                                        left: 40,
-                                        right: 40,
-                                        top: 15,
-                                        bottom: 15)),
-                                child: Row(
-                                        children: [
-                                          const Text(
-                                            'No',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                          answers[index] == 0  ? const Icon(Icons.check) : const Text("") 
-                                        ],
-                                      )
-                              ),
+                                    if (answers[index] == 1) {
+                                      setState(() {
+                                        yesColor[index] =
+                                            Colors.purple.shade300;
+                                        noColor[index] = Colors.grey.shade400;
+                                      });
+                                    } else {
+                                      setState(() {
+                                        yesColor[index] =
+                                            Colors.purple.shade300;
+                                        noColor[index] = Colors.green.shade400;
+                                      });
+                                    }
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: noColor[index],
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(11)),
+                                      padding: const EdgeInsets.only(
+                                          left: 40,
+                                          right: 40,
+                                          top: 15,
+                                          bottom: 15)),
+                                  child: Row(
+                                    children: [
+                                      const Text(
+                                        'No',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      answers[index] == 0
+                                          ? const SizedBox(
+                                              width: 10,
+                                              child: Icon(Icons.check,
+                                                  color: Colors.white))
+                                          : const Text("")
+                                    ],
+                                  )),
                             ],
                           ),
                         ],
@@ -184,6 +193,22 @@ class _QPageState extends State<QPage> {
               },
             ),
           ),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  elevation: 4,
+                  padding: const EdgeInsets.all(20),
+                  shape: BeveledRectangleBorder(
+                      borderRadius: BorderRadius.circular(0)),
+                  surfaceTintColor: Colors.purple.shade300,
+                  backgroundColor: Colors.purple.shade300),
+              onPressed: () => nextPage(),
+              child: const Text(
+                'Submit',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18
+                  ),
+              ))
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(items: [
@@ -194,14 +219,6 @@ class _QPageState extends State<QPage> {
             icon: SvgPicture.asset('assets/icons/Arrow - Left 2.svg'),
             label: 'Next'),
       ]),
-      floatingActionButton: FloatingActionButton(
-          child: SvgPicture.asset('assets/icons/button.svg'),
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => next.Page(answers: answers)));
-          }),
     );
   }
 
@@ -236,5 +253,10 @@ class _QPageState extends State<QPage> {
         ),
       ],
     );
+  }
+
+  nextPage() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => next.Report(answers: answers)));
   }
 }

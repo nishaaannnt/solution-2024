@@ -1,5 +1,3 @@
-// File: main.dart
-
 import 'package:flutter/material.dart';
 import 'package:solution/firebase_options.dart';
 import 'package:solution/services/auth/auth_gate.dart';
@@ -23,7 +21,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'Poppins'
+      ),
       debugShowCheckedModeBanner: false,
       home: AuthGate(),
     );

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +52,7 @@ class _ChatListState extends State<ChatList> {
 
     // Ensure current user's email is not included in the list
     if (_auth.currentUser!.email != data['email']) {
+      var intValue = Random().nextInt(10);
       return ListTile(
         title: Container(
           decoration: BoxDecoration(
@@ -58,7 +61,7 @@ class _ChatListState extends State<ChatList> {
           padding: const EdgeInsets.all(10.0),
           child:Row(children: [
             SvgPicture.asset(
-              'assets/icons/boy.svg',
+              intValue > 5 ? 'assets/icons/boy.svg' : 'assets/icons/girl.svg' ,
               height: 20,
               width: 20,
             ),

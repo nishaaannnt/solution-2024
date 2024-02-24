@@ -54,7 +54,7 @@ String buildEndPoint() {
   String url = 'https://newsapi.org/v2/everything?';
 
   Map <String, dynamic> queryParams = {
-    'q' : 'Autism',
+    'q' : 'ASD, Autism',
     'from' : startDate,
     'sortBy' : 'relevancy',
     'apiKey' : '19ec8256cef94fae8102969661f055d7',
