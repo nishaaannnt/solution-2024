@@ -16,7 +16,7 @@ class ContactCard extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return Container(
-            height: 164.0,
+            height: 175,
             padding: const EdgeInsets.fromLTRB(5, 10, 10, 5),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
@@ -60,7 +60,7 @@ class ContactCard extends StatelessWidget {
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    // mainAxisAlignment: ,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),

@@ -21,7 +21,7 @@ class Categories extends StatelessWidget {
             style: TextStyle(
               color: Colors.black,
               fontSize: 25,
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w600,
             ),
           ),
         ),
@@ -59,7 +59,7 @@ class Categories extends StatelessWidget {
                           child: Text(
                             list[index].name,
                             style: const TextStyle(
-                              fontSize: 20,
+                              fontSize: 15,
                             ),
                             textAlign: TextAlign.center,
                           ),

@@ -19,7 +19,7 @@ class _ReportState extends State<Report> {
           'Report',
           ),
         centerTitle: true,
-        backgroundColor: Colors.purple.shade200,
+        backgroundColor: Colors.purple.shade300,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -34,22 +34,19 @@ class _ReportState extends State<Report> {
               ),
               const SizedBox(height: 25.0),
               Image.asset(
-                'assets/icons/report.jpg', // Ensure this path is correct
+                'assets/icons/report.jpg',
                 errorBuilder: (context, error, stackTrace) {
-                  return const Text('Error loading image'); // Handle error gracefully
+                  return const Text('Error loading image'); 
                 },
               ),
               const SizedBox(height: 20.0),
-
-              // Depression section (blue box)
               _buildInfoBox(
-                color: Colors.purple.shade200,
+                color: Colors.purple.shade100,
                 title: 'Depression:',
                 content: '''
 People with autism are four times more likely to experience depression than those who are neurotypical. One of the strongest predictors of depression is loneliness. Since individuals high in the autism spectrum are more at risk of isolating themselves, they may have more depression triggers.'''
               ),
 
-              // Fixations section (yellow box)
               _buildInfoBox(
                 title: 'Fixations:',
                 content: '''
@@ -57,12 +54,11 @@ Many people with autism spectrum disorders have difficulties in dealing with cha
                 color: Colors.white,
               ),
 
-              // Abnormal/Flat Speech section (green box)
               _buildInfoBox(
                 title: 'Abnormal/Flat Speech:',
                 content: '''
 Individuals with autism generally speak differently from most people. They may talk in a flat or exaggerated way or speak in clipped bursts. This relates to the general difficulties people with autism spectrum disorders experience in understanding metaphors, social cues, and the subtexts of certain words.''',
-                color: Colors.purple.shade200,
+                color: Colors.purple.shade100,
               ),
               _buildInfoBox(
                 title: 'Noise Sensitivity:',
@@ -74,7 +70,7 @@ Individuals with autism generally speak differently from most people. They may t
                 title: 'Social Difficulty:',
                 content: '''
 Many individuals on the autism spectrum feel challenged when it comes to making or engaging friends and may be overwhelmed by uncertain social situations. This disposition is often related to their difficulties with reading non-verbal communication, or, conversely, to their own adherence to fixed routines or tendency towards flat speech.''',
-                color: Colors.purple.shade200,
+                color: Colors.purple.shade100,
               ),
               _buildInfoBox(
                 title: 'Anxiety',
@@ -86,7 +82,7 @@ Individuals with autism often develop irrational fears or phobias, social anxiet
                 title: 'Abnormal Posture',
                 content: '''
 Individuals on the autism spectrum often struggle with a reduced perception of their bodily movements. As a result, they may have difficulties with their motor coordination or postural orientation. These tendencies may further exacerbate their social isolation.''',
-                color: Colors.purple.shade200,
+                color: Colors.purple.shade100,
               ),
               _buildInfoBox(
                 title: 'Poor Eye Contact:',
@@ -98,7 +94,7 @@ Individuals on the autism spectrum often struggle with a reduced perception of t
                 title: 'Tics and Fidgets:',
                 content: '''
 Individuals with autism may experience motoric and somatic tics such as head movements, excessive blinking, or twitching. They may also struggle with vocal tics, such as repeating words or phrases. Finally, some find it challenging to keep still, and they constantly feel the urge to fidget.''',
-                color: Colors.purple.shade200,
+                color: Colors.purple.shade100,
               ),
               _buildInfoBox(
                 title: 'Aggression:',
@@ -107,7 +103,6 @@ Some individuals with autism may be prone to aggression in the form of hitting o
                 color: Colors.white,
               ),
 
-              // Add similar _buildInfoBox calls for Noise Sensitivity and other sections with different colors
             ],
           ),
         ),
