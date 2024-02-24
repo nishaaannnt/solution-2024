@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solution/pages/login_page.dart';
 import 'package:solution/pages/register_page.dart';
+import 'package:solution/pages/relationship_page.dart';
 
 class LoginOrRegister extends StatefulWidget {
   const LoginOrRegister({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class _LoginOrRegisterState extends State<LoginOrRegister> {
     if (showLoginPage) {
       return LoginPage(onTap: togglePages);
     } else {
-      return RegisterPage(onTap: togglePages);
+      return RoleSelectionPage(onTap: togglePages);
     }
   }
 }
