@@ -34,7 +34,7 @@ class QWidget
           id: i+1,
           question: qdata[i],
           isYes: false,
-          isNo: true
+          isNo: false
         )
       );
     }

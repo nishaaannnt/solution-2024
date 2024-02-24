@@ -25,9 +25,9 @@ class WhatsNew {
 
       var cont;
 
-      if(article.title.length > 25)
+      if(article.title.length > 80)
       {
-        cont = article.title.substring(0,25);
+        cont = article.title.substring(0,80);
       }
       else
       {
@@ -54,7 +54,7 @@ String buildEndPoint() {
   String url = 'https://newsapi.org/v2/everything?';
 
   Map <String, dynamic> queryParams = {
-    'q' : 'ASD',
+    'q' : 'Autism',
     'from' : startDate,
     'sortBy' : 'relevancy',
     'apiKey' : '19ec8256cef94fae8102969661f055d7',
@@ -67,6 +67,7 @@ String buildEndPoint() {
    });
 
   url = url.substring(0,url.length-1);
+  print(url);
   return url;
 
 }

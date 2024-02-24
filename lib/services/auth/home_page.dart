@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
     list = CategoryModel.getCategories();
     info = WhatsNew.getInfo();
 
-    await Future.delayed(Duration(seconds: 1)); // Simulating delay for demo purposes
+    // await Future.delayed(Duration(seconds: 1)); // Simulating delay for demo purposes
 
     setState(() {
       popularDiets = []; // Provide a default value if needed

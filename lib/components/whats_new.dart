@@ -1,4 +1,3 @@
-// what's new
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:solution/models/whats_new_model.dart';
@@ -6,7 +5,7 @@ import 'package:solution/models/whats_new_model.dart';
 class WhatIsNew extends StatelessWidget {
   final Future<List<WhatsNew>> infoFuture;
 
-  const WhatIsNew({super.key, required this.infoFuture});
+  const WhatIsNew({Key? key, required this.infoFuture}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,96 +13,102 @@ class WhatIsNew extends StatelessWidget {
       future: infoFuture,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator(); // or any other loading indicator
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
+          return Center(
+            child: Text('Error: ${snapshot.error}'),
+          );
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return const Text("No data available");
+          return const Center(
+            child: Text("No data available"),
+          );
         } else {
           List<WhatsNew> info = snapshot.data!;
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 20),
+              Padding(
+                padding: const EdgeInsets.only(left: 20, top: 20, bottom: 10),
                 child: Text(
                   "What's New",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 25,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 15,
-              ),
               SizedBox(
-                height: 350,
+                height: 280,
                 child: ListView.separated(
                   itemBuilder: (context, index) {
-                    return Card(
-                      elevation: 4,
-                      surfaceTintColor: Colors.white,
-                      child: Container(
-                        width: 210,
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Image.network(
-                                info[index].iconPath ?? "placeholder_image_path",
-                                height: 150,
-                                width: 150,
-                            ),
-                            Column(
-                              children: [
-                                Text(
-                                    info[index].content ?? "No content available",
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black,
-                                      fontSize: 16,
+                    return SizedBox(
+                      width: 200,
+                      child: Card(
+                        elevation: 4,
+                        surfaceTintColor: Colors.white,                
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.network(
+                                  info[index].iconPath ?? "placeholder_image_path",
+                                  height: 120,
+                                  width: double.infinity,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              Text(
+                                info[index].content ?? "No content available",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              const SizedBox(height: 10),
+                              SizedBox(
+                                width: double.infinity,
+                                child: ElevatedButton(
+                                  onPressed: () => _launchUrl(url: info[index].url ?? ""),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.purple.shade200,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50),
                                     ),
                                   ),
-                              ],
-                            ),
-                            const SizedBox(height: 10),
-                            Container(
-                              height: 45,
-                              width: 130,
-                              decoration: BoxDecoration(
-                                color: Colors.purple.shade200,
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                              child: ElevatedButton(
-                                onPressed: () => _launchUrl(url: info[index].url ?? ""),
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.purple.shade200,
-                                ),
-                                child: const Text(
-                                  'View',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14,
+                                  child: const Text(
+                                    'View',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14,
+                                    ),
                                   ),
                                 ),
                               ),
-                            )
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     );
                   },
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(width: 25),
+                  separatorBuilder: (context, index) => const SizedBox(width: 20),
                   itemCount: info.length,
                   scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                 ),
               ),
             ],
@@ -113,7 +118,7 @@ class WhatIsNew extends StatelessWidget {
     );
   }
 
-  _launchUrl({required String url}) async {
+    _launchUrl({required String url}) async {
     final Uri link = Uri.parse(url);
     if (!await launchUrl(link)) {
       throw Exception('Could not launch');
