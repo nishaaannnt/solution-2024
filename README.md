@@ -43,4 +43,3 @@ To set up the Autism Support app, follow these steps:
 Autism Support was developed by a team of passionate developers dedicated to making a positive impact in the autism community. We are committed to continuously improving and expanding our app to better serve individuals with autism and their caregivers.
 
 For more information and updates, visit our website [insert_website_url_here].
-
