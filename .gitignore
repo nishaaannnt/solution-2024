@@ -46,9 +46,3 @@ app.*.map.json
 /android/app/release
 
 # Images
-sdg1-1.png
-sdg1.png
-sdg2-1.png
-sdg2.png
-Dashboard-1.png
-Dashboard.png
