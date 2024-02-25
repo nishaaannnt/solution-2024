@@ -16,6 +16,7 @@ Our app, Autism Support, is designed to provide comprehensive support, resources
 ## App Screenshots
 
 ![app](assets/app1.jpg)
+<br> </br>
 ![alt text](assets/app2.jpg)
 
 ## Project Overview
