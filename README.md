@@ -64,7 +64,7 @@ Upon registration, users access role-specific features:
 
 ## How to Set Up
 To set up the Autism Support app, follow these steps:
-1. Clone the repository from [GitHub](insert_github_repo_url_here)
+1. Clone the repository from [GitHub](https://github.com/nishaaannnt/solution-2024.git)
 2. Navigate to the project directory
 3. Run `flutter pub get` to install dependencies
 4. Connect the app to Firebase by adding your Firebase project configuration
@@ -73,4 +73,4 @@ To set up the Autism Support app, follow these steps:
 ## About Us
 Autism Support was developed by a team of passionate developers dedicated to making a positive impact in the autism community. We are committed to continuously improving and expanding our app to better serve individuals with autism and their caregivers.
 
-For more information and updates, visit our website [insert_website_url_here].
+For more information and updates, visit our website [here]().
