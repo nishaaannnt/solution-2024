@@ -16,6 +16,7 @@ Our app, Autism Support, is designed to provide comprehensive support, resources
 ## App Screenshots
 
 ![app](assets/app1.jpg)
+![alt text](assets/app2.jpg)
 
 ## Project Overview
 The Autism Support app is built using Flutter, a cross-platform framework for building native applications. It integrates Firebase for backend services, ensuring scalability, real-time data synchronization, and secure user authentication.
