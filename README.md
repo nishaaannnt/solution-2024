@@ -5,8 +5,8 @@ Autism is a neurodevelopmental disorder that affects millions of people worldwid
 
 ## Targeted UN SDGs
 
-![Reduced Inequalities](sdg1.png)
-![Quality Education](sdg2.png)
+![Reduced Inequalities](sdg1-1.png)
+![Quality Education](sdg2-1.png)
 
 ## What Our App Does
 Our app, Autism Support, is designed to provide comprehensive support, resources, and community engagement for individuals with autism and their caregivers. It offers personalized assessments, access to professionals, and a supportive community to empower users in their autism journey.
