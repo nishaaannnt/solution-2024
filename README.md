@@ -22,7 +22,6 @@ The Autism Support app is a powerful platform developed using Flutter, a versati
 ![app2](assets/app2.jpg)
 <br></br>
 ![app](assets/app1.jpg)
-<br></br>
 
 ### User Registration
 
