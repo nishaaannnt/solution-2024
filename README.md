@@ -5,8 +5,8 @@ Autism is a neurodevelopmental disorder that affects millions of people worldwid
 
 ## Targeted UN SDGs
 
-![image.jpg1](assets/sdg1.png) |![image.jpg2](assets/sdg2.png)
---- | --- | 
+![SDGs](assets/sdg.jpg)
+
 ## What Our App Does
 Our app, Autism Support, is designed to provide comprehensive support, resources, and community engagement for individuals with autism and their caregivers. It offers personalized assessments, access to professionals, and a supportive community to empower users in their autism journey.
 
@@ -15,8 +15,6 @@ Our app, Autism Support, is designed to provide comprehensive support, resources
 
 ## Project Overview
 The Autism Support app is built using Flutter, a cross-platform framework for building native applications. It integrates Firebase for backend services, ensuring scalability, real-time data synchronization, and secure user authentication.
-
-![Dash Board](Dashboard-1.png)
 
 ## Key Features
 - Personalized assessments to understand individual needs and preferences
