@@ -71,6 +71,12 @@ To set up the Autism Support app, follow these steps:
 5. Run the app on your preferred device using `flutter run`
 
 ## About Us
-Autism Support was developed by a team of passionate developers dedicated to making a positive impact in the autism community. We are committed to continuously improving and expanding our app to better serve individuals with autism and their caregivers.
+Our decision to focus on autism support is driven by a dual purpose. Firstly, we observed a significant void in India for a dedicated community and app for individuals with autism. This motivated us to create a platform addressing this critical need. Additionally, a team member with a younger brother who is autistic provides a personal connection and deep motivation. Through our efforts, we aim to contribute to a more supportive and inclusive environment for individuals with autism and their families.
 
-For more information and updates, visit our website [here]().
+### Team Members
+- [Nishant Dixit](https://github.com/nishaaannnt/solution-2024.git)
+- [Om Bothre](https://github.com/ombothre)
+- [Rachit Tandale](https://github.com/racchittt)
+- [Shreeyash Kamble](https://github.com/Shreeyash1202)
+
+Aura Gaze was developed by a team of passionate developers dedicated to making a positive impact in the autism community. We are committed to continuously improving and expanding our app to better serve individuals with autism and their caregivers.
